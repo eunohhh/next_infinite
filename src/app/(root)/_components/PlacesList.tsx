@@ -1,8 +1,8 @@
 "use client";
 
+import { getPlaces } from "@/api/getPlaces";
 import { Place } from "@/types/supabase";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { getPlaces } from "../page";
 import InfiniteScroll from "./InfiniteScroll";
 import PlaceCard from "./PlaceCard";
 
@@ -20,7 +20,7 @@ function PlacesList({ places }: { places: Place[] }) {
             return allPages.length * 5;
         },
         queryFn: ({ pageParam }) => {
-            console.log(pageParam);
+            // console.log(pageParam);
             return getPlaces(pageParam);
         },
         select: (data) => data.pages.flat(),
