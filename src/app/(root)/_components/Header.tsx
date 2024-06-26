@@ -18,12 +18,8 @@ function Header() {
 
                 <div className="ml-auto">
                     <ul className="flex items-center gap-x-8">
-                        <li>
-                            <Link href="/log-in">로그인</Link>
-                        </li>
-                        <li>
-                            <Link href="/sign-up">회원가입</Link>
-                        </li>
+                        <li>로그인</li>
+                        <li>회원가입</li>
                     </ul>
                 </div>
             </div>
