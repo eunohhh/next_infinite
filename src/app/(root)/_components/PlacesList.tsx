@@ -29,16 +29,23 @@ function PlacesList({ places }: { places: Place[] }) {
     // 초기 서버에서 가져온 places 와 추가로 가져온 infiniteData 를 합치고 undefined 값을 제거
     // fetching 중이면 초기 서버에서 가져온 places 만 사용
     // fetching 중이 아니면 초기 서버에서 가져온 places 와 추가로 가져온 infiniteData 를 합침
-    const placesData = !isFetching
-        ? [...places, ...infiniteData].filter((place): place is Place => place !== undefined)
-        : [...places].filter((place): place is Place => place !== undefined);
+    // const placesData = !isFetching
+    //     ? [...places, ...infiniteData].filter((place): place is Place => place !== undefined)
+    //     : [...places].filter((place): place is Place => place !== undefined);
+    const placesData = [...places, ...infiniteData].filter(
+        (place): place is Place => place !== undefined
+    );
+
+    const uniquePlacesData = Array.from(new Set(placesData.map((place) => place.id))).map((id) =>
+        placesData.find((place) => place.id === id)
+    );
 
     return (
         <InfiniteScroll fetchNextPage={fetchNextPage} hasNextPage={hasNextPage}>
             <ul>
-                {placesData.map((place) => (
-                    <PlaceCard key={place.id} place={place} />
-                ))}
+                {uniquePlacesData.map(
+                    (place) => place && <PlaceCard key={place.id} place={place} />
+                )}
                 {isFetching && <li className="text-center">Loading...</li>}
             </ul>
         </InfiniteScroll>
