@@ -1,16 +1,16 @@
-import supabase from "@/supabase/supabaseServer";
+import supabaseClient from "@/supabase/supabaseClient";
 import { NextRequest } from "next/server";
 
-export async function GET(req: NextRequest) {
-    const request: { start: number; end: number } = await req.json();
+export async function POST(req: NextRequest) {
+    const request: { start: number } = await req.json();
 
-    const { start, end } = request;
+    const { start } = request;
 
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
         .from("Places")
         .select("*")
         .order("created_at", { ascending: false }) // 생성일 내림차순으로 정렬
-        .range(start, end); // 데이터 범위 설정
+        .range(start, start + 4); // 데이터 범위 설정
 
     if (error) {
         return new Response(JSON.stringify(error), { status: 500 });

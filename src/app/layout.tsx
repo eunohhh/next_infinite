@@ -17,9 +17,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="ko">
-            <QueryProvider>
-                <body className={inter.className}>{children}</body>
-            </QueryProvider>
+            <body className={inter.className}>
+                <QueryProvider>{children}</QueryProvider>
+            </body>
         </html>
     );
 }
