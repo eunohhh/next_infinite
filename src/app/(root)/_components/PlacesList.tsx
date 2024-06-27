@@ -6,6 +6,8 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import InfiniteScroll from "./InfiniteScroll";
 import PlaceCard from "./PlaceCard";
 
+const LIMIT = 5;
+
 function PlacesList({ places }: { places: Place[] }) {
     const {
         data: infiniteData = [],
@@ -17,35 +19,34 @@ function PlacesList({ places }: { places: Place[] }) {
         initialPageParam: 0,
         getNextPageParam: (lastPage: Place[], allPages: Place[][]) => {
             if (lastPage.length === 0) return null;
-            return allPages.length * 5;
+            return allPages.length * LIMIT;
         },
         queryFn: ({ pageParam }) => {
-            // console.log(pageParam);
+            // 서버 데이터와 통합하기 위해 첫번째 요청은 의미없는 배열을 반환
+            // 이렇게 하는 이유는 getNextPageParam 에서 첫 lastPage.length 가 0이 아니게 하기 위해서
+            if (pageParam === 0) return Promise.resolve([""]);
             return getPlaces(pageParam);
         },
         select: (data) => data.pages.flat(),
     });
 
     // 초기 서버에서 가져온 places 와 추가로 가져온 infiniteData 를 합치고 undefined 값을 제거
-    // fetching 중이면 초기 서버에서 가져온 places 만 사용
-    // fetching 중이 아니면 초기 서버에서 가져온 places 와 추가로 가져온 infiniteData 를 합침
-    // const placesData = !isFetching
-    //     ? [...places, ...infiniteData].filter((place): place is Place => place !== undefined)
-    //     : [...places].filter((place): place is Place => place !== undefined);
     const placesData = [...places, ...infiniteData].filter(
         (place): place is Place => place !== undefined
     );
 
-    const uniquePlacesData = Array.from(new Set(placesData.map((place) => place.id))).map((id) =>
-        placesData.find((place) => place.id === id)
-    );
+    // // 1. placesData 배열의 각 항목에서 id 값을 추출하여 Set 객체에 저장
+    // const uniqueIds = new Set(placesData.map((place) => place.id));
+
+    // // 2. Set 객체에 저장된 고유한 id 값을 사용하여, 각 id 값에 대응하는 Place 객체를 placesData 배열에서 찾아 새로운 배열을 만듬
+    // const uniquePlacesData = Array.from(uniqueIds).map((id) =>
+    //     placesData.find((place) => place.id === id)
+    // );
 
     return (
         <InfiniteScroll fetchNextPage={fetchNextPage} hasNextPage={hasNextPage}>
             <ul>
-                {uniquePlacesData.map(
-                    (place) => place && <PlaceCard key={place.id} place={place} />
-                )}
+                {placesData.map((place) => place && <PlaceCard key={place.id} place={place} />)}
                 {isFetching && <li className="text-center">Loading...</li>}
             </ul>
         </InfiniteScroll>
