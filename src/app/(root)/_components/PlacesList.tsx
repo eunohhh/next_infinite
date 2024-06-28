@@ -16,17 +16,12 @@ function PlacesList({ places }: { places: Place[] }) {
         hasNextPage,
     } = useInfiniteQuery({
         queryKey: ["placesInfinite"],
-        initialPageParam: 0,
+        initialPageParam: 5,
         getNextPageParam: (lastPage: Place[], allPages: Place[][]) => {
             if (lastPage.length === 0) return null;
             return allPages.length * LIMIT;
         },
-        queryFn: ({ pageParam }) => {
-            // 서버 데이터와 통합하기 위해 첫번째 요청은 의미없는 배열을 반환
-            // 이렇게 하는 이유는 getNextPageParam 에서 첫 lastPage.length 가 0이 아니게 하기 위해서
-            if (pageParam === 0) return Promise.resolve([""]);
-            return getPlaces(pageParam);
-        },
+        queryFn: ({ pageParam }) => getPlaces(pageParam),
         select: (data) => data.pages.flat(),
     });
 
@@ -56,3 +51,24 @@ function PlacesList({ places }: { places: Place[] }) {
 export default PlacesList;
 
 // const placesData = [...places, ...infiniteData];
+
+// const {
+//     data: infiniteData = [],
+//     isFetching,
+//     fetchNextPage,
+//     hasNextPage,
+// } = useInfiniteQuery({
+//     queryKey: ["placesInfinite"],
+//     initialPageParam: 0,
+//     getNextPageParam: (lastPage: Place[], allPages: Place[][]) => {
+//         if (lastPage.length === 0) return null;
+//         return allPages.length * LIMIT;
+//     },
+//     queryFn: ({ pageParam }) => {
+//         // 서버 데이터와 통합하기 위해 첫번째 요청은 의미없는 배열을 반환
+//         // 이렇게 하는 이유는 getNextPageParam 에서 첫 lastPage.length 가 0이 아니게 하기 위해서
+//         if (pageParam === 0) return Promise.resolve([""]);
+//         return getPlaces(pageParam);
+//     },
+//     select: (data) => data.pages.flat(),
+// });
