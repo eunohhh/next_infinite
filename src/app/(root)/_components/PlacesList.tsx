@@ -6,11 +6,9 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import InfiniteScroll from "./InfiniteScroll";
 import PlaceCard from "./PlaceCard";
 
-const LIMIT = 5;
-
-function PlacesList({ places }: { places: Place[] }) {
+function PlacesList() {
     const {
-        data: infiniteData = [],
+        data: placesData = [],
         isFetching,
         fetchNextPage,
         hasNextPage,
@@ -19,24 +17,11 @@ function PlacesList({ places }: { places: Place[] }) {
         initialPageParam: 5,
         getNextPageParam: (lastPage: Place[], allPages: Place[][]) => {
             if (lastPage.length === 0) return null;
-            return allPages.length * LIMIT;
+            return allPages.length;
         },
-        queryFn: ({ pageParam }) => getPlaces(pageParam),
+        queryFn: getPlaces,
         select: (data) => data.pages.flat(),
     });
-
-    // 초기 서버에서 가져온 places 와 추가로 가져온 infiniteData 를 합치고 undefined 값을 제거
-    const placesData = [...places, ...infiniteData].filter(
-        (place): place is Place => place !== undefined
-    );
-
-    // // 1. placesData 배열의 각 항목에서 id 값을 추출하여 Set 객체에 저장
-    // const uniqueIds = new Set(placesData.map((place) => place.id));
-
-    // // 2. Set 객체에 저장된 고유한 id 값을 사용하여, 각 id 값에 대응하는 Place 객체를 placesData 배열에서 찾아 새로운 배열을 만듬
-    // const uniquePlacesData = Array.from(uniqueIds).map((id) =>
-    //     placesData.find((place) => place.id === id)
-    // );
 
     return (
         <InfiniteScroll fetchNextPage={fetchNextPage} hasNextPage={hasNextPage}>
@@ -50,7 +35,22 @@ function PlacesList({ places }: { places: Place[] }) {
 
 export default PlacesList;
 
+// function PlacesList({ places }: { places: Place[] }) {
+
 // const placesData = [...places, ...infiniteData];
+
+// 초기 서버에서 가져온 places 와 추가로 가져온 infiniteData 를 합치고 undefined 값을 제거
+// const placesData = [...places, ...infiniteData].filter(
+//     (place): place is Place => place !== undefined
+// );
+
+// // 1. placesData 배열의 각 항목에서 id 값을 추출하여 Set 객체에 저장
+// const uniqueIds = new Set(placesData.map((place) => place.id));
+
+// // 2. Set 객체에 저장된 고유한 id 값을 사용하여, 각 id 값에 대응하는 Place 객체를 placesData 배열에서 찾아 새로운 배열을 만듬
+// const uniquePlacesData = Array.from(uniqueIds).map((id) =>
+//     placesData.find((place) => place.id === id)
+// );
 
 // const {
 //     data: infiniteData = [],

@@ -3,8 +3,6 @@ import { Place } from "@/types/supabase";
 import { HydrationBoundary, QueryClient, dehydrate } from "@tanstack/react-query";
 import PlacesList from "./_components/PlacesList";
 
-const LIMIT = 5;
-
 export default async function HomePage() {
     const queryClient = new QueryClient();
     await queryClient.prefetchInfiniteQuery({
@@ -12,18 +10,20 @@ export default async function HomePage() {
         initialPageParam: 0,
         getNextPageParam: (lastPage: Place[], allPages: Place[][]) => {
             if (lastPage.length === 0) return null;
-            return allPages.length * LIMIT;
+            return allPages.length;
         },
-        queryFn: ({ pageParam }) => getPlaces(pageParam),
+        queryFn: getPlaces,
+        pages: 1,
     });
     const dehydratedState = dehydrate(queryClient);
 
-    const places = await queryClient.getQueryData<Place[]>(["places"]);
+    // const queryData = await queryClient.getQueryData<QueryResult>(["placesInfinite"]);
+    // const places = queryData ? queryData.pages.flat() : [];
 
-    // console.log(places);
     return (
         <HydrationBoundary state={dehydratedState}>
-            {places && <PlacesList places={places} />}
+            {/* {places && <PlacesList places={places} />} */}
+            <PlacesList />
         </HydrationBoundary>
     );
 }
@@ -33,12 +33,10 @@ export default async function HomePage() {
 //     await queryClient.prefetchQuery({ queryKey: ["places"], queryFn: () => getPlaces(0) });
 //     const dehydratedState = dehydrate(queryClient);
 
-//     const places = await queryClient.getQueryData<Place[]>(["places"]);
-
-//     // console.log(places);
+//     const queryData = await queryClient.getQueryData<QueryResult>(["placesInfinite"]);
+//     const places = queryData ? queryData.pages.flat() : [];
 //     return (
-//         <HydrationBoundary state={dehydratedState}>
-//             {places && <PlacesList places={places} />}
-//         </HydrationBoundary>
+//          <HydrationBoundary state={dehydratedState}>
+//              {places && <PlacesList places={places} />}
+//          </HydrationBoundary>
 //     );
-// }
