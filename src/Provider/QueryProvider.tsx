@@ -41,6 +41,7 @@ function QueryProvider({ children }: { children: React.ReactNode }) {
     // 아무튼 app router 에서는 useState 안에서 생성하지 말라는 소리같음
     const queryClient = getQueryClient();
 
+    // 데브툴즈 initialIsOpen 꼭 아래처럼 설정해야 서버 오류 안남
     return (
         <QueryClientProvider client={queryClient}>
             {children}

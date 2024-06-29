@@ -1,11 +1,15 @@
 import Config from "@/config/config.export";
 import { Place } from "@/types/supabase";
+import { QueryFunctionContext } from "@tanstack/react-query";
 
-export async function getPlaces(): Promise<Place[]> {
+export async function getInfinitePlaces({
+    pageParam = 0,
+}: QueryFunctionContext<string[], number>): Promise<Place[]> {
     const response = await fetch(`${Config().baseUrl}/api/places`, {
-        method: "GET",
+        method: "POST",
+        body: JSON.stringify({ page: pageParam }),
         next: {
-            tags: ["places"],
+            tags: ["placesInfinite"],
         },
         cache: "no-store",
     });

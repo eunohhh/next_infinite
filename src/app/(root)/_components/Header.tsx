@@ -11,7 +11,7 @@ function Header() {
                 <nav className="ml-20">
                     <ul className="flex items-center gap-x-8">
                         <li>
-                            <Link href="/">홈으로</Link>
+                            <Link href="/usequery">useQuery Example</Link>
                         </li>
                     </ul>
                 </nav>

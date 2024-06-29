@@ -4,6 +4,19 @@ import { Place } from "@/types/supabase";
 import { QueryError } from "@supabase/supabase-js";
 import { NextRequest } from "next/server";
 
+export async function GET() {
+    const { data, error }: { data: Place[]; error: QueryError } = await supabaseClient
+        .from("Places")
+        .select("*")
+        .order("created_at", { ascending: false }); // 생성일 내림차순으로 정렬
+
+    if (error) {
+        return new Response(JSON.stringify(error), { status: 500 });
+    }
+
+    return new Response(JSON.stringify(data));
+}
+
 export async function POST(req: NextRequest) {
     const request: { page: number } = await req.json();
 

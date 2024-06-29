@@ -1,4 +1,4 @@
-import { getPlaces } from "@/api/getPlaces";
+import { getInfinitePlaces } from "@/api/getInfinitePlaces";
 import { Place } from "@/types/supabase";
 import { HydrationBoundary, QueryClient, dehydrate } from "@tanstack/react-query";
 import PlacesList from "./_components/PlacesList";
@@ -12,7 +12,7 @@ export default async function HomePage() {
             if (lastPage.length === 0) return null;
             return allPages.length;
         },
-        queryFn: getPlaces,
+        queryFn: getInfinitePlaces,
         pages: 1,
     });
     const dehydratedState = dehydrate(queryClient);
