@@ -10,3 +10,8 @@ export type Place = Database["public"]["Tables"]["Places"]["Row"];
 export type Deal = Tables<"deals">;
 
 export type RealTime = Tables<"realtimeone">;
+
+export type LoginPayLoad = {
+    email: string;
+    password: string;
+}
