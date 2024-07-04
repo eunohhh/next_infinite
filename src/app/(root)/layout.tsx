@@ -6,9 +6,7 @@ function BasicLayout({ children }: { children: React.ReactNode }) {
         <main className="flex min-h-screen flex-col justify-start p-2">
             <AuthProvider>
                 <Header />
-                <section className="container mx-auto max-w-[1024px] flex-1 flex flex-col justify-center">
-                    {children}
-                </section>
+                <section className="container mx-auto max-w-[1024px] flex-1 flex flex-col">{children}</section>
             </AuthProvider>
         </main>
     );

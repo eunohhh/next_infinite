@@ -22,10 +22,13 @@ function Header() {
                 <nav className="ml-20">
                     <ul className="flex items-center gap-x-8">
                         <li>
-                            <Link href="/usequery">useQuery Example</Link>
+                            <Link href="/usequery">useQuery</Link>
                         </li>
                         <li>
-                            <Link href="/mutation">mutation Example</Link>
+                            <Link href="/mutation">mutation</Link>
+                        </li>
+                        <li>
+                            <Link href="/realtime">realtime</Link>
                         </li>
                     </ul>
                 </nav>
@@ -34,7 +37,12 @@ function Header() {
                     isLoggedIn ? (
                         <div className="ml-auto flex gap-x-2">
                             로그인 잘 되어있습니다
-                            <button onClick={handleClickLogout}>로그아웃</button>
+                            <button
+                                className="bg-red-500 text-white rounded-md px-2 py-1 border border-red-500"
+                                onClick={handleClickLogout}
+                            >
+                                로그아웃
+                            </button>
                         </div>
                     ) : (
                         <LoginLogoutSection />

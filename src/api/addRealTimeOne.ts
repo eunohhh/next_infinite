@@ -1,7 +1,7 @@
-export async function addDeals(content: string) {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/deals`, {
+export async function addRealTimeOne(title: string) {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/realtime`, {
         method: "POST",
-        body: JSON.stringify({content}),
+        body: JSON.stringify({title}),
         next: {
             tags: ["deals"],
         },

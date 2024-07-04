@@ -59,9 +59,9 @@ function MutationTest() {
                 </button>
             </form>
             <hr className="my-4" />
-            <ul>
+            <ul className="flex flex-col gap-4">
                 {deals.map((deal) => (
-                    <li key={deal.id}>
+                    <li className="p-4 border-2 border-gray-300 rounded-md" key={deal.id}>
                         <p>{deal.sellerId}</p>
                         <p>{deal.content}</p>
                     </li>

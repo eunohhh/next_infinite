@@ -3,7 +3,7 @@ import { ComponentProps, useId } from "react";
 type InputProps = {
     label?: string;
     required?: boolean;
-    type?: "text" | "password";
+    type?: "text" | "password" | "file";
 } & ComponentProps<"input">;
 
 function Input({ label, required, id, type = "text", ...props }: InputProps) {

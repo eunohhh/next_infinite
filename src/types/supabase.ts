@@ -112,10 +112,10 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "deals_sellerId_fkey"
+            foreignKeyName: "deals_sellerId_fkey1"
             columns: ["sellerId"]
             isOneToOne: false
-            referencedRelation: "users"
+            referencedRelation: "userinfo"
             referencedColumns: ["id"]
           },
         ]
@@ -209,6 +209,24 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      realtimeone: {
+        Row: {
+          created_at: string
+          id: string
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          title?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          title?: string
+        }
+        Relationships: []
       }
       userinfo: {
         Row: {

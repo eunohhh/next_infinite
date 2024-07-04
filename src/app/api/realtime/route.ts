@@ -1,26 +1,26 @@
 import createClientOnServer from "@/supabase/supabaseServer";
-import { Deal } from "@/types/typs";
+import { RealTime } from "@/types/typs";
 import { QueryError } from "@supabase/supabase-js";
 
 export async function GET() {
     const supabase = createClientOnServer();    
 
-    // const { data : deals, error } : {data: Deal[]; error: QueryError} = await supabase.from("deals").select("*, seller:sellerId (*)");
-    const { data : deals, error } : {data: Deal[]; error: QueryError} = await supabase.from("deals").select("*");
+    const { data : realtimeone, error } : {data: RealTime[]; error: QueryError} = await supabase.from("realtimeone").select("*");
 
     if (error) {
         return new Response(JSON.stringify(error), { status: 500 });
     }
 
-    return new Response(JSON.stringify(deals));
+    return new Response(JSON.stringify(realtimeone));
 }
 
+
 export async function POST(request: Request) {
-    const { content } = await request.json();
+    const { title } = await request.json();
 
     const supabase = createClientOnServer();
 
-    const { data, error } = await supabase.from("deals").insert({ content }).select();
+    const { data, error } = await supabase.from("realtimeone").insert({ title }).select();
 
     if (error) {
         console.log(error);
