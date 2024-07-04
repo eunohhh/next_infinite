@@ -1,6 +1,6 @@
 import Input from "../../_components/Input";
 import signIn from "../_lib/signIn";
-import LoginWithGithub from "./LoginWithGithub";
+import signInWithGithub from "../_lib/signInWithGithub";
 import { SubmitButton } from "./SubmitButton";
 
 function LoginForm() {
@@ -19,7 +19,13 @@ function LoginForm() {
                 로그인
             </SubmitButton>
 
-            <LoginWithGithub />
+            <SubmitButton
+                formAction={signInWithGithub}
+                className="bg-slate-700 text-white rounded-md px-4 py-2 text-foreground mb-2"
+                pendingText="Signing In..."
+            >
+                깃헙로그인
+            </SubmitButton>
         </form>
     );
 }
