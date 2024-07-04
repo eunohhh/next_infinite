@@ -6,10 +6,9 @@ export async function getInfinitePlaces({
     pageParam = 0,
 }: QueryFunctionContext<string[], number>): Promise<Place[]> {
     // const response = await fetch(`${Config().baseUrl}/api/places`, {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/places`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/places?page=${pageParam}`, {
 
-        method: "POST",
-        body: JSON.stringify({ page: pageParam }),
+        method: "GET",
         next: {
             tags: ["placesInfinite"],
         },
