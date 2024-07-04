@@ -7,8 +7,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Infinite Scroll Example",
-    description: "Infinite Scroll Example",
+    title: "RealTime Example",
+    description: "RealTime Example",
 };
 
 export default function RootLayout({
@@ -19,9 +19,9 @@ export default function RootLayout({
     return (
         <html lang="ko">
             <body className={inter.className}>
-                <QueryProvider>
-                    <AuthProvider>{children}</AuthProvider>
-                </QueryProvider>
+                <AuthProvider>
+                    <QueryProvider>{children}</QueryProvider>
+                </AuthProvider>
             </body>
         </html>
     );

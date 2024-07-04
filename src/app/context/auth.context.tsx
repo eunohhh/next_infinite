@@ -26,7 +26,10 @@ export function AuthProvider({ children }: PropsWithChildren) {
     const isLoggedIn = !!user;
 
     useEffect(() => {
+        // 서버에서는 무용지물
         const { data } = supabaseClient.auth.onAuthStateChange((event, session) => {
+            console.log(event);
+
             if (event === "INITIAL_SESSION") {
                 // handle initial session
                 setUser(session?.user || null);
@@ -46,6 +49,11 @@ export function AuthProvider({ children }: PropsWithChildren) {
             }
             setIsInitialized(true);
         });
+
+        // Cleanup subscription on unmount
+        return () => {
+            data?.subscription.unsubscribe();
+        };
     }, []);
 
     const value = { isInitialized, isLoggedIn, user };
