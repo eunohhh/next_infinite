@@ -45,7 +45,7 @@ function QueryProvider({ children }: { children: React.ReactNode }) {
     return (
         <QueryClientProvider client={queryClient}>
             {children}
-            <ReactQueryDevtools initialIsOpen={process.env.NEXT_PUBLIC_MODE === "local"} />
+            <ReactQueryDevtools initialIsOpen={process.env.NEXT_PUBLIC_RUN_MODE === "local"} />
         </QueryClientProvider>
     );
 }

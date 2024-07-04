@@ -17,12 +17,8 @@ export default async function HomePage() {
     });
     const dehydratedState = dehydrate(queryClient);
 
-    // const queryData = await queryClient.getQueryData<QueryResult>(["placesInfinite"]);
-    // const places = queryData ? queryData.pages.flat() : [];
-
     return (
         <HydrationBoundary state={dehydratedState}>
-            {/* {places && <PlacesList places={places} />} */}
             <PlacesList />
         </HydrationBoundary>
     );
