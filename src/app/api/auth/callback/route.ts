@@ -21,6 +21,7 @@ export async function GET(request: Request) {
                         return cookieStore.get(name)?.value
                     },
                     set(name: string, value: string, options: CookieOptions) {
+
                         cookieStore.set({ name, value, ...options })
                     },
                     remove(name: string, options: CookieOptions) {
@@ -30,7 +31,6 @@ export async function GET(request: Request) {
             }
         )
 
-        console.log(supabase)
         const { error } = await supabase.auth.exchangeCodeForSession(code)
         if (!error) {
         return NextResponse.redirect(`${origin}${next}`)
@@ -38,5 +38,5 @@ export async function GET(request: Request) {
     }
 
     // return the user to an error page with instructions
-    return NextResponse.redirect(`${origin}/`)
+    return NextResponse.redirect(`${origin}/error`)
 }

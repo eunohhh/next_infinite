@@ -5,8 +5,9 @@ import LoginLogoutSection from "./LoginLogoutSection";
 
 async function Header() {
     const cookieStore = cookies();
-    const supabaseCookie = cookieStore.get("sb-ageijospngqmyzptvsoo-auth-token");
+    const allCookies = cookieStore.getAll();
 
+    const authTokenCookies = allCookies.filter((cookie) => cookie.name.startsWith("sb-ageijospngqmyzptvsoo-auth-token"));
     return (
         <header className="border-b border-gray-600 py-4">
             <div className="container mx-auto max-w-[1024px] px-5 h-16 flex items-center">
@@ -28,7 +29,7 @@ async function Header() {
                     </ul>
                 </nav>
 
-                {supabaseCookie ? (
+                {authTokenCookies.length > 0 ? (
                     <div className="ml-auto flex gap-x-2">
                         로그인 잘 되어있습니다
                         <LogOutButton />
