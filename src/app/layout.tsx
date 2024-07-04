@@ -1,6 +1,7 @@
 import QueryProvider from "@/Provider/QueryProvider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { AuthProvider } from "./context/auth.context";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,7 +19,9 @@ export default function RootLayout({
     return (
         <html lang="ko">
             <body className={inter.className}>
-                <QueryProvider>{children}</QueryProvider>
+                <QueryProvider>
+                    <AuthProvider>{children}</AuthProvider>
+                </QueryProvider>
             </body>
         </html>
     );

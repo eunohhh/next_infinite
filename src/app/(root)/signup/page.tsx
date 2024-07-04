@@ -47,18 +47,20 @@ function SignUpPage() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="w-full max-w-sm mx-auto flex flex-col gap-y-8">
-            <div>
-                <Input label="아이디" required id="email" />
-                <Input label="비밀번호" required id="password" type="password" />
-                <Input label="비밀번호 확인" required id="password-check" type="password" />
-                <Input label="닉네임" required id="nickname" />
-            </div>
+        <div className="w-full h-[600px] flex justify-center items-center">
+            <form onSubmit={handleSubmit} className="w-full max-w-sm mx-auto flex flex-col gap-y-8">
+                <div>
+                    <Input label="아이디" required id="email" />
+                    <Input label="비밀번호" required id="password" type="password" />
+                    <Input label="비밀번호 확인" required id="password-check" type="password" />
+                    <Input label="닉네임" required id="nickname" />
+                </div>
 
-            <button className="w-full bg-blue-500 text-white p-2 rounded-md" type="submit">
-                회원가입하기
-            </button>
-        </form>
+                <button className="w-full bg-blue-500 text-white p-2 rounded-md" type="submit">
+                    회원가입하기
+                </button>
+            </form>
+        </div>
     );
 }
 

@@ -4,6 +4,10 @@ import supabaseClient from "@/supabase/supabaseClient";
 import Link from "next/link";
 import LoginLogoutSection from "./LoginLogoutSection";
 
+// type HeaderProps = {
+//     user: User;
+// };
+
 function Header() {
     const { isInitialized, isLoggedIn } = useAuth();
 
@@ -11,6 +15,10 @@ function Header() {
         const { error } = await supabaseClient.auth.signOut();
         if (error) console.error(error);
     };
+
+    // const useQueryLinkPath = user ? "/usequery" : "/login";
+    // const mutationLinkPath = user ? "/mutation" : "/login";
+    // const realtimeLinkPath = user ? "/realtime" : "/login";
 
     return (
         <header className="border-b border-gray-600 py-4">

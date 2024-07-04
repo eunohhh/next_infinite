@@ -1,13 +1,24 @@
-import { AuthProvider } from "../context/auth.context";
 import Header from "./_components/Header";
 
-function BasicLayout({ children }: { children: React.ReactNode }) {
+// export const revalidate = 0;
+
+// async function getUser() {
+//     const supabase = createClientOnServer();
+
+//     const { data, error } = await supabase.auth.getUser();
+
+//     if (error) {
+//         console.log(error);
+//         throw new Error(error.message);
+//     }
+//     return data.user;
+// }
+
+async function BasicLayout({ children }: { children: React.ReactNode }) {
     return (
         <main className="flex min-h-screen flex-col justify-start p-2">
-            <AuthProvider>
-                <Header />
-                <section className="container mx-auto max-w-[1024px] flex-1 flex flex-col">{children}</section>
-            </AuthProvider>
+            <Header />
+            <section className="container mx-auto max-w-[1024px] flex-1 flex flex-col">{children}</section>
         </main>
     );
 }

@@ -35,16 +35,18 @@ function LogInPage() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="w-full max-w-sm mx-auto my-0 flex flex-col gap-y-8">
-            <div>
-                <Input label="아이디" required id="email" />
-                <Input label="비밀번호" required id="password" type="password" />
-            </div>
+        <div className="w-full h-[600px] flex justify-center items-center">
+            <form onSubmit={handleSubmit} className="w-full max-w-sm mx-auto my-0 flex flex-col gap-y-8">
+                <div>
+                    <Input label="아이디" required id="email" />
+                    <Input label="비밀번호" required id="password" type="password" />
+                </div>
 
-            <button className="w-full bg-blue-500 text-white p-2 rounded-md" type="submit">
-                로그인하기
-            </button>
-        </form>
+                <button className="w-full bg-blue-500 text-white p-2 rounded-md" type="submit">
+                    로그인하기
+                </button>
+            </form>
+        </div>
     );
 }
 
