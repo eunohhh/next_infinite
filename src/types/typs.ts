@@ -1,4 +1,4 @@
-import { Database } from "./supabase";
+import { Database, Tables } from "./supabase";
 
 export interface QueryResult {
     pages: Place[][];
@@ -6,3 +6,5 @@ export interface QueryResult {
 }
 
 export type Place = Database["public"]["Tables"]["Places"]["Row"];
+
+export type Deal = Tables<"deals">;

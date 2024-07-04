@@ -24,6 +24,9 @@ function Header() {
                         <li>
                             <Link href="/usequery">useQuery Example</Link>
                         </li>
+                        <li>
+                            <Link href="/mutation">mutation Example</Link>
+                        </li>
                     </ul>
                 </nav>
 
