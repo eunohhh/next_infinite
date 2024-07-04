@@ -1,7 +1,7 @@
 "use client";
 
 import { getInfinitePlaces } from "@/api/getInfinitePlaces";
-import { Place } from "@/types/supabase";
+import { Place } from "@/types/typs";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import InfiniteScroll from "./InfiniteScroll";
 import PlaceCard from "./PlaceCard";

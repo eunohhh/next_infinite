@@ -1,5 +1,6 @@
 // import Config from "@/config/config.export";
-import { Place } from "@/types/supabase";
+
+import { Place } from "@/types/typs";
 
 export async function getPlaces(): Promise<Place[]> {
     // const response = await fetch(`${Config().baseUrl}/api/places`, {

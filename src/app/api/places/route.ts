@@ -1,6 +1,6 @@
 import { ITEMS_PER_PAGE } from "@/constants/constants";
 import supabaseClient from "@/supabase/supabaseClient";
-import { Place } from "@/types/supabase";
+import { Place } from "@/types/typs";
 import { QueryError } from "@supabase/supabase-js";
 import { NextRequest } from "next/server";
 

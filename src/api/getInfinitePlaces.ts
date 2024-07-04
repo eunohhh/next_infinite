@@ -1,5 +1,5 @@
 // import Config from "@/config/config.export";
-import { Place } from "@/types/supabase";
+import { Place } from "@/types/typs";
 import { QueryFunctionContext } from "@tanstack/react-query";
 
 export async function getInfinitePlaces({

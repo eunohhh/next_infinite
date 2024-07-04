@@ -1,4 +1,4 @@
-import { Place } from "@/types/supabase";
+import { Place } from "@/types/typs";
 
 function PlaceCard({ place }: { place: Place }) {
     return (

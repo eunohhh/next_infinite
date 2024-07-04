@@ -1,5 +1,5 @@
 import { getInfinitePlaces } from "@/api/getInfinitePlaces";
-import { Place } from "@/types/supabase";
+import { Place } from "@/types/typs";
 import { HydrationBoundary, QueryClient, dehydrate } from "@tanstack/react-query";
 import PlacesList from "./_components/PlacesList";
 
