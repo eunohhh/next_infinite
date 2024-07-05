@@ -1,4 +1,5 @@
 import getUserServer from "../_lib/getUserServer";
+import RealTimeTwoPost from "./_components/RealTimeTwoPost";
 
 async function RealTimeTwoPage() {
     const { user } = await getUserServer();
@@ -7,7 +8,7 @@ async function RealTimeTwoPage() {
 
     return (
         <div>
-            <h1>RealTimeTwoPage</h1>
+            <RealTimeTwoPost user={user} />
         </div>
     );
 }
