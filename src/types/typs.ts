@@ -15,3 +15,9 @@ export type LoginPayLoad = {
     email: string;
     password: string;
 }
+
+export type Message = {
+    [key: string]: any;
+    type: "broadcast" | "presence" | "postgres_changes";
+    event: string;
+};

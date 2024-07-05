@@ -12,7 +12,7 @@ async function Header() {
         <header className="border-b border-gray-600 py-4">
             <div className="container mx-auto max-w-[1024px] px-5 h-16 flex items-center">
                 <Link href="/" className="text-lg font-bold">
-                    무한 스크롤, 리얼타임 예제
+                    예제모음
                 </Link>
 
                 <nav className="ml-20">
@@ -25,6 +25,9 @@ async function Header() {
                         </li>
                         <li>
                             <Link href="/realtime">realtime</Link>
+                        </li>
+                        <li>
+                            <Link href="/realtime2">realtime2</Link>
                         </li>
                     </ul>
                 </nav>

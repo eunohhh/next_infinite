@@ -213,20 +213,31 @@ export type Database = {
       realtimeone: {
         Row: {
           created_at: string
+          created_by: string | null
           id: string
           title: string
         }
         Insert: {
           created_at?: string
+          created_by?: string | null
           id?: string
           title?: string
         }
         Update: {
           created_at?: string
+          created_by?: string | null
           id?: string
           title?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "realtimeone_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "userinfo"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       userinfo: {
         Row: {

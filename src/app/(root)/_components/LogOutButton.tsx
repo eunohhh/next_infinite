@@ -1,5 +1,5 @@
 import signOut from "../_lib/signOut";
-import { SubmitButton } from "../login/_components/SubmitButton";
+import { SubmitButton } from "./SubmitButton";
 
 function LogOutButton() {
     return (

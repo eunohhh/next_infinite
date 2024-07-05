@@ -1,8 +1,8 @@
 "use client";
 
 import { useAuth } from "@/app/context/auth.context";
-import LogOutButton from "./LogOutButton";
-import LoginLogoutSection from "./LoginLogoutSection";
+import LogOutButton from "../src/app/(root)/_components/LogOutButton";
+import LoginLogoutSection from "../src/app/(root)/_components/LoginLogoutSection";
 
 function LoginOrLogout() {
     const { isInitialized, isLoggedIn } = useAuth();
