@@ -6,7 +6,9 @@ const signOut = async () => {
 
     const supabase = createClientOnServer();
 
-    const { error } = await supabase.auth.signOut();
+    const { error } = await supabase.auth.signOut({
+        scope: "global",
+    });
 
     if (error) {
         return redirect("/login");

@@ -1,7 +1,7 @@
 import Input from "../../_components/Input";
+import { SubmitButton } from "../../_components/SubmitButton";
 import signIn from "../_lib/signIn";
 import signInWithGithub from "../_lib/signInWithGithub";
-import { SubmitButton } from "./SubmitButton";
 
 function LoginForm() {
     return (

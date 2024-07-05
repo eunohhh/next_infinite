@@ -3,12 +3,18 @@
 import { addRealTimeOne } from "@/api/addRealTimeOne";
 import supabaseClient from "@/supabase/supabaseClient";
 import { RealTime } from "@/types/typs";
-import { RealtimePostgresInsertPayload } from "@supabase/supabase-js";
+import { RealtimePostgresInsertPayload, User } from "@supabase/supabase-js";
 import { useMutation } from "@tanstack/react-query";
+import clsx from "clsx";
 import { useEffect, useState } from "react";
 import Input from "../../_components/Input";
 
-function RealTimePosts({ serverPosts }: { serverPosts: RealTime[] }) {
+type RealTimePostsProps = {
+    serverPosts: RealTime[];
+    user: User;
+};
+
+function RealTimePosts({ serverPosts, user }: RealTimePostsProps) {
     const [realTimePosts, setRealTimePosts] = useState<RealTime[]>(serverPosts);
 
     const { mutate, isPending, error } = useMutation({
@@ -56,7 +62,13 @@ function RealTimePosts({ serverPosts }: { serverPosts: RealTime[] }) {
             <hr className="my-4" />
             <ul className="flex flex-col gap-4">
                 {realTimePosts.map((post) => (
-                    <li className="p-4 border-2 border-gray-300 rounded-md" key={post.id}>
+                    <li
+                        className={clsx(
+                            "p-4 border-2 border-gray-300 rounded-md",
+                            post.created_by === user.id ? "bg-blue-500" : "bg-gray-500"
+                        )}
+                        key={post.id}
+                    >
                         <p>{post.id}</p>
                         <p>{post.created_at}</p>
                         <p>{post.title}</p>
