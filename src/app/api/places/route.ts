@@ -1,5 +1,5 @@
 import { ITEMS_PER_PAGE } from "@/constants/constants";
-import supabaseClient from "@/supabase/supabaseClient";
+import createClientOnServer from "@/supabase/supabaseServer";
 import { Place } from "@/types/typs";
 import { QueryError } from "@supabase/supabase-js";
 import { NextRequest } from "next/server";
@@ -10,12 +10,14 @@ export async function GET(req: NextRequest) {
 
     const pageString = searchParams.get("page");
 
+    const supabase = createClientOnServer();
+
     if(pageString) {
         const page = Number(pageString);
         const start = page * ITEMS_PER_PAGE;
         const end = start + ITEMS_PER_PAGE - 1;
 
-        const { data, error }: { data: Place[]; error: QueryError } = await supabaseClient
+        const { data, error }: { data: Place[]; error: QueryError } = await supabase
             .from("Places")
             .select("*")
             .order("created_at", { ascending: false }) // 생성일 내림차순으로 정렬
@@ -28,7 +30,7 @@ export async function GET(req: NextRequest) {
         return new Response(JSON.stringify(data));
     }
 
-    const { data, error }: { data: Place[]; error: QueryError } = await supabaseClient
+    const { data, error }: { data: Place[]; error: QueryError } = await supabase
         .from("Places")
         .select("*")
         .order("created_at", { ascending: false }); // 생성일 내림차순으로 정렬
