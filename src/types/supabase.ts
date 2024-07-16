@@ -239,29 +239,41 @@ export type Database = {
           },
         ]
       }
-      userinfo: {
+      signals: {
         Row: {
           created_at: string | null
-          email: string | null
-          id: string
-          profile_image: string | null
-          total_applicant: number | null
-          username: string | null
+          id: number
+          signal: Json | null
         }
         Insert: {
           created_at?: string | null
-          email?: string | null
-          id?: string
-          profile_image?: string | null
-          total_applicant?: number | null
-          username?: string | null
+          id?: number
+          signal?: Json | null
         }
         Update: {
           created_at?: string | null
+          id?: number
+          signal?: Json | null
+        }
+        Relationships: []
+      }
+      userinfo: {
+        Row: {
+          email: string | null
+          id: string
+          profile_image: string | null
+          username: string | null
+        }
+        Insert: {
           email?: string | null
           id?: string
           profile_image?: string | null
-          total_applicant?: number | null
+          username?: string | null
+        }
+        Update: {
+          email?: string | null
+          id?: string
+          profile_image?: string | null
           username?: string | null
         }
         Relationships: [

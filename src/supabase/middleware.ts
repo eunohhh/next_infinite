@@ -1,11 +1,19 @@
-import { createServerClient } from '@supabase/ssr'
-import { NextResponse, type NextRequest } from 'next/server'
+import { createServerClient } from '@supabase/ssr';
+import { cookies } from 'next/headers';
+import { NextResponse, type NextRequest } from 'next/server';
 
 export async function updateSession(request: NextRequest) {
 
   let supabaseResponse = NextResponse.next({
     request,
   })
+
+  const cookieStore = cookies();
+  const allCookies = cookieStore.getAll();
+
+  const authTokenCookies = allCookies.filter((cookie) =>
+      cookie.name.startsWith("sb-ageijospngqmyzptvsoo-auth-token")
+  );
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -35,10 +43,12 @@ export async function updateSession(request: NextRequest) {
   const {
     data: { user },
   } = await supabase.auth.getUser()
+  
 
-  // console.log("user =>", user)
   if (
     !user &&
+    !authTokenCookies &&
+    request.nextUrl.pathname !== '/' &&
     !request.nextUrl.pathname.startsWith('/login') &&
     !request.nextUrl.pathname.startsWith('/signup') &&
     !request.nextUrl.pathname.startsWith('/api')

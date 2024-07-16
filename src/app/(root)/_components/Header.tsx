@@ -7,7 +7,9 @@ async function Header() {
     const cookieStore = cookies();
     const allCookies = cookieStore.getAll();
 
-    const authTokenCookies = allCookies.filter((cookie) => cookie.name.startsWith("sb-ageijospngqmyzptvsoo-auth-token"));
+    const authTokenCookies = allCookies.filter((cookie) =>
+        cookie.name.startsWith("sb-ageijospngqmyzptvsoo-auth-token")
+    );
     return (
         <header className="border-b border-gray-600 py-4">
             <div className="container mx-auto max-w-[1024px] px-5 h-16 flex items-center">
@@ -28,6 +30,9 @@ async function Header() {
                         </li>
                         <li>
                             <Link href="/realtime2">realtime2</Link>
+                        </li>
+                        <li>
+                            <Link href="/peer">peer</Link>
                         </li>
                     </ul>
                 </nav>
