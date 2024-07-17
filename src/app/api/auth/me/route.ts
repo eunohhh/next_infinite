@@ -45,6 +45,8 @@ export async function GET() {
         return NextResponse.json({ data: { user: "User not found" } }, { status: 404 });
     }
 
+    return NextResponse.json({ data: { user: user } }, { status: 200 });
+
     // const { data: userData, error: userError } = await supabase
     //     .from("users")
     //     .select("*")
